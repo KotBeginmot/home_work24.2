@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, response
 
+from course.models import Payments
 from users.models import User
 from users.serializer import UserSerializer, CreateUserSerializer
 
