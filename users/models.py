@@ -4,7 +4,6 @@ from django.db import models
 from course.models import NULLABLE
 
 
-# Create your models here.
 class User(AbstractUser):
     username = None
 
@@ -14,6 +13,13 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='users/', **NULLABLE)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    course = models.ForeignKey('course.Course', on_delete=models.SET_NULL, verbose_name='курсы студента', **NULLABLE,
+                               related_name='students')
 
     def __str__(self):
         return f'{self.email}, {self.user_phone}'
+
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
+        ordering = ('id',)
